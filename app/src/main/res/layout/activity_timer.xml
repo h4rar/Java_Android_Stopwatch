@@ -6,40 +6,79 @@
     android:layout_height="match_parent"
     tools:context=".TimerActivity">
 
-    <TextView
-        android:id="@+id/timer_text__time"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/line_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="00:00"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.35" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/line_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3" />
+
+
+    <EditText
+        android:id="@+id/timer_edittext__minutes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="time"
         android:textSize="40sp"
-        app:layout_constraintBottom_toTopOf="@id/timer_button__start_pause"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed"/>
+        app:layout_constraintBottom_toTopOf="@+id/line_2"
+        app:layout_constraintEnd_toStartOf="@+id/timer_text__split"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        android:importantForAutofill="no"
+        android:hint="@string/_00"
+        />
+
+    <TextView
+        android:id="@+id/timer_text__split"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/split"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/line_2"
+        app:layout_constraintEnd_toStartOf="@+id/timer_edittext__seconds"
+        app:layout_constraintStart_toEndOf="@+id/timer_edittext__minutes" />
+
+    <EditText
+        android:id="@+id/timer_edittext__seconds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:importantForAutofill="no"
+        android:inputType="time"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/line_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/timer_text__split"
+        android:hint="@string/_00"/>
+
 
     <Button
         android:id="@+id/timer_button__start_pause"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/start"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/timer_button__reset"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/timer_text__time"
-        app:layout_constraintBottom_toTopOf="@id/timer_button__reset"/>
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/line_1"
+        app:layout_constraintVertical_chainStyle="packed"
+        android:hint="@string/_00"/>
 
     <Button
         android:id="@+id/timer_button__reset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/reset"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/timer_button__start_pause"
         android:visibility="invisible"
-        tools:visibility = "visible"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/timer_button__start_pause"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

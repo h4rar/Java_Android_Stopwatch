@@ -3,4 +3,6 @@
     <string name="start">Start</string>
     <string name="reset">Reset</string>
     <string name="pause">Pause</string>
+    <string name="split" translatable="false">:</string>
+    <string name="_00" translatable="false">00</string>
 </resources>
