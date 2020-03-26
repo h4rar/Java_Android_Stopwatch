@@ -3,6 +3,7 @@ package h4rar.space.stopwatch;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -34,7 +35,12 @@ public class TimerActivity extends AppCompatActivity {
         minutes = findViewById(R.id.timer_edittext__minutes);
         buttonStartPause = findViewById(R.id.timer_button__start_pause);
         buttonReset = findViewById(R.id.timer_button__reset);
+
         setEditTextZero();
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);//Показывает клавиатуру
+        seconds.requestFocus();
+        seconds.selectAll();
+
         buttonStartPause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -151,5 +157,13 @@ public class TimerActivity extends AppCompatActivity {
             timeInMillis = endTime - System.currentTimeMillis();
             startTimer();
         }
+    }
+
+    public void selectMinutes(View view) {
+        minutes.selectAll();
+    }
+
+    public void selectSeconds(View view) {
+        seconds.selectAll();
     }
 }

@@ -25,20 +25,22 @@
         android:id="@+id/timer_edittext__minutes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:hint="@string/_00"
+        android:importantForAutofill="no"
         android:inputType="time"
+        android:maxLength="2"
+        android:onClick="selectMinutes"
         android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/line_2"
         app:layout_constraintEnd_toStartOf="@+id/timer_text__split"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        android:importantForAutofill="no"
-        android:hint="@string/_00"
-        />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/timer_text__split"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="12sp"
         android:hint="@string/split"
         android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/line_2"
@@ -49,26 +51,28 @@
         android:id="@+id/timer_edittext__seconds"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:hint="@string/_00"
         android:importantForAutofill="no"
         android:inputType="time"
+        android:maxLength="2"
+        android:onClick="selectSeconds"
         android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/line_2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/timer_text__split"
-        android:hint="@string/_00"/>
+        app:layout_constraintStart_toEndOf="@+id/timer_text__split" />
 
 
     <Button
         android:id="@+id/timer_button__start_pause"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:hint="@string/_00"
         android:text="@string/start"
         app:layout_constraintBottom_toTopOf="@id/timer_button__reset"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/line_1"
-        app:layout_constraintVertical_chainStyle="packed"
-        android:hint="@string/_00"/>
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <Button
         android:id="@+id/timer_button__reset"
