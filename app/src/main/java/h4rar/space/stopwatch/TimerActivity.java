@@ -41,54 +41,65 @@ public class TimerActivity extends AppCompatActivity {
         seconds.requestFocus();
         seconds.selectAll();
 
+        select(minutes);
+        select(seconds);
+
         buttonStartPause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (timerRunning) {
                     pauseTimer();
+                    seconds.requestFocus();
+                    seconds.selectAll();
                 } else {
                     startTimer();
                 }
             }
         });
+
         buttonReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 resetTimer();
+                seconds.requestFocus();
+                seconds.selectAll();
             }
         });
     }
 
     private void startTimer() {
-
-        if (seconds.length() > 0 && minutes.length() > 0) {
+        try {
             startTimeSecond = Long.parseLong(seconds.getText().toString());
             startTimeMinutes = Long.parseLong(minutes.getText().toString());
 
-            if (startTimeSecond != 0 || startTimeMinutes != 0) {
-                timeInMillis = startTimeSecond * 1000 + startTimeMinutes * 60000;
+            if (seconds.length() > 0 && minutes.length() > 0) {
+                if (startTimeSecond != 0 || startTimeMinutes != 0) {
+                    timeInMillis = startTimeSecond * 1000 + startTimeMinutes * 60000;
 
-                //чтобы при перевороте время не "терялось" сначала
-                //добавляю к currentTimeMillis текущее время телефона, азатем вычитаю
-                endTime = System.currentTimeMillis() + timeInMillis;
+                    //чтобы при перевороте время не "терялось" сначала
+                    //добавляю к currentTimeMillis текущее время телефона, азатем вычитаю
+                    endTime = System.currentTimeMillis() + timeInMillis;
 
-                countDownTimer = new CountDownTimer(timeInMillis, 1000) {
-                    @Override
-                    public void onTick(long millisUntilFinished) {
-                        timeInMillis = millisUntilFinished;
-                        updateCountDownText();
-                    }
+                    countDownTimer = new CountDownTimer(timeInMillis, 1000) {
+                        @Override
+                        public void onTick(long millisUntilFinished) {
+                            timeInMillis = millisUntilFinished;
+                            updateCountDownText();
+                        }
 
-                    @Override
-                    public void onFinish() {
-                        timerRunning = false;
-                        updateButtons();
-                    }
-                }.start();
+                        @Override
+                        public void onFinish() {
+                            timerRunning = false;
+                            updateButtons();
+                        }
+                    }.start();
 
-                timerRunning = true;
-                updateButtons();
+                    timerRunning = true;
+                    updateButtons();
+                }
             }
+        } catch (NumberFormatException nfe) {
+            setEditTextZero();
         }
     }
 
@@ -159,11 +170,18 @@ public class TimerActivity extends AppCompatActivity {
         }
     }
 
-    public void selectMinutes(View view) {
-        minutes.selectAll();
-    }
-
-    public void selectSeconds(View view) {
-        seconds.selectAll();
+    /**
+     * Выделяет содержимое EditText, если он в фокусе
+     */
+    public void select(final EditText editText){
+        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    editText.setText(editText.getText().toString());
+                    editText.selectAll();
+                }
+            }
+        });
     }
 }

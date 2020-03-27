@@ -29,7 +29,7 @@
         android:importantForAutofill="no"
         android:inputType="time"
         android:maxLength="2"
-        android:onClick="selectMinutes"
+
         android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/line_2"
         app:layout_constraintEnd_toStartOf="@+id/timer_text__split"
@@ -55,7 +55,6 @@
         android:importantForAutofill="no"
         android:inputType="time"
         android:maxLength="2"
-        android:onClick="selectSeconds"
         android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/line_2"
         app:layout_constraintEnd_toEndOf="parent"
